@@ -17,7 +17,14 @@ Route::middleware(['auth:sanctum'])->group(function () {
 
 Route::middleware(['auth:sanctum', 'can:admin'])->group(function () {
     Route::apiResource('/users', UserController::class);
+
+    //rota de categoria que necessita de autenticação
+    Route::apiResource('categoria', CategoryController::class)->except('index', 'show');
 });
+
+//definindo rota de index e show de categoria sem autenticação
+Route::get('categoria', [CategoryController::class, 'index']);
+Route::get('categoria/{id}', [CategoryController::class, 'show']);
 
 Route::get('/', function () {
     return ['Laravel' => app()->version()];
