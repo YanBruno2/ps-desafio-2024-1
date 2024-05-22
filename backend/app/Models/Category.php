@@ -13,4 +13,20 @@ class Category extends Model
     protected $fillable = [
         'name',
     ];
+
+    //pode ter problema aqui
+
+    public function products()
+    {
+        return $this->hasMany(Product::class, 'categoria_id', 'id');
+    }
+
+    protected static function booted()
+    {
+        self::deleting(function (Category $category) {
+            $category->products()->each(function ($product) {
+                $product->delete();
+            });
+        });
+    }
 }

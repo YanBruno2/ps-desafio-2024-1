@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -18,13 +19,19 @@ Route::middleware(['auth:sanctum'])->group(function () {
 Route::middleware(['auth:sanctum', 'can:admin'])->group(function () {
     Route::apiResource('/users', UserController::class);
 
-    //rota de categoria que necessita de autenticação
+    //rota de categoria e produto que necessitam de autenticação
     Route::apiResource('categoria', CategoryController::class)->except('index', 'show');
+    Route::apiResource('produto', ProductController::class)->except('index', 'show');
 });
 
-//definindo rota de index e show de categoria sem autenticação
+//definindo rota de index e show de categoria e produto sem autenticação
 Route::get('categoria', [CategoryController::class, 'index']);
 Route::get('categoria/{id}', [CategoryController::class, 'show']);
+Route::get('produto', [ProductController::class, 'index']);
+Route::get('produto/{id}', [ProductController::class, 'show']);
+
+//Rota não utilizada
+//Route::post('disable{id}',[ProductController::class,'disable']);
 
 Route::get('/', function () {
     return ['Laravel' => app()->version()];
