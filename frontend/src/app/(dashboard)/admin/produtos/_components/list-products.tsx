@@ -14,12 +14,13 @@ import { LuInfo, LuPen, LuTrash } from 'react-icons/lu'
 import { DialogUpdateProduct } from './dialog-update-product'
 import { DialogProductDelete } from './dialog-delete-product'
 import { DialogInformationProduct } from './dialog-information-product'
+import { api } from '@/services/api'
 
 export default async function ListProduct() {
   let products: productType[]
 
   try {
-    products = null // requisição para a api
+    products = await api.get('/produto') // requisição para a api
   } catch (e) {
     return (
       <DashboardContainer className="text-destructive">
@@ -38,6 +39,7 @@ export default async function ListProduct() {
               <TableHead>Nome</TableHead>
               <TableHead>Categoria</TableHead>
               <TableHead>Quantidade</TableHead>
+              <TableHead>Preço</TableHead>
               <TableHead className="text-right">Ações</TableHead>
             </TableRow>
           </TableHeader>
@@ -49,7 +51,8 @@ export default async function ListProduct() {
                 </TableCell>
                 <TableCell>{product.name}</TableCell>
                 <TableCell>{product.category.name}</TableCell>
-                <TableCell>{product.amount}</TableCell>
+                <TableCell>{product.quantity}</TableCell>
+                <TableCell>{product.price}</TableCell>
                 <TableCell className="flex justify-end">
                   <DialogInformationProduct product={product}>
                     <Button variant="ghost" size="icon">

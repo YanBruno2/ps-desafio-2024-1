@@ -23,13 +23,28 @@ export default function FormFieldsCategory({
 }: FormFieldsCategoryProps) {
   const { pending } = useFormStatus()
 
+  // aqui abaixo criei o formulario com requisição http e apenas o campo de name
+
   return (
     <>
       <FormFieldsGroup>
         {category && (
           <Input defaultValue={category.id} type="text" name="id" hidden />
         )}
-        {/* inserir campos do formulário */}
+        <FormField>
+          <Label htmlFor="name" required={!category}>
+            Nome
+          </Label>
+          <Input
+            name="name"
+            id="name"
+            placeholder="Insira o nome da categoria"
+            defaultValue={category?.name}
+            disabled={pending}
+            readOnly={readOnly}
+            error={error?.errors?.name}
+          />
+        </FormField>
       </FormFieldsGroup>
       <DialogFooter className={cn({ hidden: readOnly })}>
         <Button type="submit" pending={pending}>
