@@ -30,11 +30,13 @@ Route::get('categoria/{id}', [CategoryController::class, 'show']);
 Route::get('produto', [ProductController::class, 'index']);
 Route::get('produto/{id}', [ProductController::class, 'show']);
 
-//Rota não utilizada
-//Route::post('disable{id}',[ProductController::class,'disable']);
+// routes/api.php
+Route::get('/produtos/por-categoria', [ProductController::class, 'getProdutosPorCategoria']);
 
 Route::get('/', function () {
     return ['Laravel' => app()->version()];
 });
 
 require __DIR__.'/auth.php';
+//Rota para atualização de produto
+//Route::post('decrease-quantity/{id}', [ProductController::class, 'decreaseQuantity']);

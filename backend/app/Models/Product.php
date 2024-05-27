@@ -12,8 +12,6 @@ class Product extends Model
 {
     use HasFactory, HasUuids;
 
-    //pode dar algum problema aqui por causa dos nomes
-
     //campos que não vão ser alterados
     protected $fillable = [
         'name',

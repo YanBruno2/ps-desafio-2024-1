@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
 use App\Models\Product;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Symfony\Component\HttpFoundation\Response;
 use Throwable;
@@ -83,6 +84,22 @@ class ProductController extends Controller
 
     }
 
+    // app/Http/Controllers/ProdutoController.php
+
+    public function getProdutosPorCategoria(Request $request)
+    {
+        $categoria = $request->query('categoria');
+        if ($categoria) {
+            $produtos = Product::whereHas('categoria', function ($query) use ($categoria) {
+                $query->where('nome', $categoria);
+            })->get();
+        } else {
+            $produtos = Product::all();
+        }
+
+        return response()->json($produtos);
+    }
+
     public function destroy($id)
     {
         $product = $this->product->findOrFail($id);
@@ -91,14 +108,33 @@ class ProductController extends Controller
         return response()->json([], Response::HTTP_NO_CONTENT);
     }
 
-    //função para atualizar status, mas não é util aqui
+    //função para atualizar a quantidade de produto
     /*
-        public function disable($id)
-        {
-            $product = $this->product->findOrFail($id);
-            $product->update(["status"=>0]);
-            return response()->json($product,Response::HTTP_OK);
+
+        namespace App\Http\Controllers;
+
+        use App\Models\Product;
+        use Illuminate\Http\Request;
+        use Symfony\Component\HttpFoundation\Response;
+
+        public function decreaseQuantity(Request $request, $id)
+    {
+        $product = $this->product->findOrFail($id);
+        $quantityToDecrease = $request->input('quantity');
+
+        if ($quantityToDecrease <= 0) {
+            return response()->json(['error' => "Quantidade a ser decrementada deve ser maior que zero"], Response::HTTP_BAD_REQUEST);
         }
+        if ($product->quantity < $quantityToDecrease) {
+            return response()->json(['error' => "Não há produto suficiente no estoque"], Response::HTTP_BAD_REQUEST);
+        }
+
+        $product->quantity -= $quantityToDecrease;
+        $product->save();
+
+        return response()->json($product, Response::HTTP_OK);
+    }
+}
 
     */
 

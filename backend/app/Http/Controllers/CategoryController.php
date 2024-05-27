@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreCategoryRequest;
 use App\Http\Requests\UpdateCategoryRequest;
 use App\Models\Category;
+use App\Models\Product;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -27,6 +28,14 @@ class CategoryController extends Controller
 
         return response()->json($category, Response::HTTP_OK);
 
+    }
+
+    //controller de para requisitar produto por categoria
+    public function getProductsByCategory($id)
+    {
+        $products = Product::where('categorias_id', $id)->get();
+
+        return response()->json($products, Response::HTTP_OK);
     }
 
     /**
