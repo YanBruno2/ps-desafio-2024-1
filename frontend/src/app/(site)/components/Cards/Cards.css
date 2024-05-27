@@ -1,0 +1,10 @@
+/* Cards.css */
+.card-container-row {
+    display: flex;
+    justify-content: space-between;
+}
+
+.card-container-column {
+    margin-top: 20px;
+    /* Espaçamento entre as linhas */
+}

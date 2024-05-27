@@ -1,0 +1,136 @@
+.footer {
+    color: #d9d9d9;
+    background-color: #696868;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 5px 8vw;
+    padding-top: 10px;
+    margin-top: 100px;
+}
+
+.footer-content {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+
+}
+
+.footer-content-left,
+.footer-content-center,
+.footer-content-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2px;
+}
+
+.footer-content-left img {
+    margin-bottom: 3px;
+}
+
+.footer-content-left p {
+    max-width: 400px;
+    line-height: 1.4;
+    margin: 0;
+    padding-top: 3px;
+    position: relative;
+    bottom: 40px;
+
+}
+
+.footer-content-left {
+    position: relative;
+    bottom: 32px;
+}
+
+.footer-content-right ul,
+.footer-content-left ul,
+.footer-content-center ul {
+    padding: 0;
+    margin: 0;
+}
+
+.footer-content-right li,
+.footer-content-left li,
+.footer-content-center li {
+    list-style: none;
+    margin-bottom: 2px;
+
+}
+
+.footer-content-right h2,
+.footer-content-center h2 {
+    color: white;
+    font-size: 20px;
+    margin-bottom: 3px;
+}
+
+.footer-copright {
+    font-size: 15px;
+    text-align: center;
+    margin-top: 3px;
+    color: #d9d9d9;
+}
+
+.footer-social-icons {
+    display: flex;
+    gap: 3px;
+    position: relative;
+    bottom: 30px;
+}
+
+.footer-content-left .logo {
+    position: relative;
+    top: 20px;
+}
+
+.footer-social-icons {
+    width: 40px;
+    margin-right: 15px;
+
+}
+
+.footer hr {
+    width: 100%;
+    height: 2px;
+    margin: 20px;
+    background-color: #696868;
+    border: none;
+}
+
+.footer-content-center {
+    position: relative;
+    top: 22px;
+}
+
+@media (max-width:750px) {
+    .footer-content {
+        display: flex;
+        flex-direction: column;
+        gap: 35px;
+
+    }
+
+    .footer-copyright {
+        text-align: center;
+
+    }
+
+    .footer-content-left {
+        display: contents;
+        text-align: justify;
+    }
+
+    .footer-social-icons {
+        display: contents;
+        text-align: left;
+    }
+
+    .footer-content-center {
+        display: contents;
+        text-align: center;
+    }
+}

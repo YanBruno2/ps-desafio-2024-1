@@ -26,7 +26,7 @@ import {
   SelectLabel,
   SelectTrigger,
   SelectValue,
-} from '@radix-ui/react-select'
+} from '@/components/select'
 
 interface FormFieldsProductProps {
   product?: productType
